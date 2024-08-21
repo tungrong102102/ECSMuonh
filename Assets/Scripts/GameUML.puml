@@ -1,0 +1,219 @@
+﻿@startuml
+'https://plantuml.com/class-diagram
+
+GameConfig --* CardItemConfig
+GameConfig --* CardCharacterConfig
+GameConfig --* EnemyConfig
+
+<> diamondCharacter
+
+Character -up- diamondCharacter
+diamondCharacter -up- Id
+diamondCharacter -up- Position
+diamondCharacter -up- Damage
+diamondCharacter -up- Size
+diamondCharacter -up- AttackSpeed
+
+<> diamondEnemy
+Enemy *-up- diamondEnemy
+diamondEnemy -up- Id
+diamondEnemy -up- Position
+diamondEnemy -up- Damage
+diamondEnemy -up- direction
+diamondEnemy -up- Speed
+
+<> diamondBullet
+Bullet *-up- diamondBullet
+diamondBullet -up- Position
+diamondBullet -up- direction
+diamondBullet -up- Speed
+
+<> diaBroad
+Broad -up- diaBroad
+diaBroad -up- Id
+diaBroad -up- BroadInt
+
+<> diaCard
+Card -up- diaCard
+diaCard -up- TextMesh : name  
+diaCard -up- TextMesh : note
+diaCard -up- Button 
+
+
+class Broad<< (E,orchid) >>
+{
+
+}
+
+class GlobalGame << (E,orchid) >>
+{
+    - ChoseCardCharacterStart
+    - BroadInt
+    -- BuySell
+    - Shop
+    - BuyCard
+    -- End
+    - Wave
+}
+
+class Button
+{
+}
+class TextMesh
+{
+    TextMesh
+}
+
+class Card  << (E,orchid) >>
+{
+}
+class ChoseCardShop << (S,yellow) >>
+{
+}
+
+class ChoseCardHero  << (S,yellow) >>
+{
+}
+hide $GlobalGame
+
+class ChoseCardCharacterStart $GlobalGame
+{
+    int numberCard;    
+}
+
+class BroadInt  
+{
+    int[,] grid
+}
+
+class Wave $GlobalGame
+{
+   int WaveStart;    
+}
+
+class Shop $GlobalGame
+{
+    int numberCard
+}
+class BuyCard $GlobalGame
+{
+
+}
+
+class CardUI << (E,orchid) >>
+{
+    Text name
+    Text note
+    Button button
+}
+
+
+class Character << (E,orchid) >>
+{
+}
+
+class Enemy << (E,orchid) >>
+{
+}
+
+class Bullet<< (E,orchid) >>
+{
+}
+class BulletData
+{
+    int id
+    float damage
+    float Speed
+}
+
+class AttackSpeed 
+{
+    float AttackSpeed
+}
+
+class Id
+{
+    int id
+}
+class Hp
+{
+    float hp
+}
+class Damage
+{
+    float Damage,
+}
+
+class Speed
+{
+    float speed
+}
+
+class direction 
+{
+    float2 direction 
+}
+class AttackSpeed
+{
+    
+}
+
+class  GameConfig
+{
+   List<CardCharacterConfig> CardCharacterConfigs
+   List<CardItemConfig> CardItemConfig
+   List<EnemyConfig> EnemyConfig
+   List<CharacterConfig> CharacterConfig
+}
+class Size
+{
+    int2 size;
+}
+
+class EnemyConfig
+{
+  int id
+  float damage
+  float hp
+  float speed
+  int sizeX
+  int sizeY
+} 
+
+class CharacterConfig
+{
+    int id
+    int level
+    float damage
+    float AttackSpeed
+    int sizeX
+    int sizeY
+}
+
+class CardCharacterConfig
+{
+    int id
+    int level
+    string name
+    string note
+}
+
+class CardItemConfig 
+{
+    int id
+    int level
+    string name
+    string note
+    Attribute Attribute
+}
+
+Enum Attribute
+{
+    None
+    Damage
+    Time
+    HP
+    AttackSpeed
+    Bullet
+}
+@enduml
